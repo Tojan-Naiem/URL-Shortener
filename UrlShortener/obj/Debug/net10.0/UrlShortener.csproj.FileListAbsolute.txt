@@ -165,3 +165,4 @@ C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShorte
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\UrlShortener.pdb
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\UrlShortener.genruntimeconfig.cache
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\ref\UrlShortener.dll
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
