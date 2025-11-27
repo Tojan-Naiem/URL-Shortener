@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using UrlShortener.Data;
 
 namespace UrlShortener.Services
 {
@@ -6,8 +7,15 @@ namespace UrlShortener.Services
     {
         public const int NumberOfCharsInShortLink = 7;
         private const string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
+        private readonly ApplicationDbContext _dbContext;
         private readonly Random _random = new();
+
+        public UrlShorteningService(
+            ApplicationDbContext dbContext
+            )
+        {
+            _dbContext = dbContext;
+        }
         public string GenerateUniqueCode()
         {
             var codeChars = new char[NumberOfCharsInShortLink];
