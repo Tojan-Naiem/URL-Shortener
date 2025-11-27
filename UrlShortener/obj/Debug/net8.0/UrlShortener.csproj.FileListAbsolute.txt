@@ -1,0 +1,7 @@
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.csproj.AssemblyReference.cache
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.AssemblyInfoInputs.cache
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.AssemblyInfo.cs
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.csproj.CoreCompileInputs.cache
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net8.0\UrlShortener.MvcApplicationPartsAssemblyInfo.cache
