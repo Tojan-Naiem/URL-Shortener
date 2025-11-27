@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using UrlShortener.Data;
 using UrlShortener.Models;
 using UrlShortener.Services;
@@ -15,6 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
     ));
 builder.Services.AddScoped<UrlShorteningService>();
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    var configuration = builder.Configuration.GetConnectionString("Redis");
+    return ConnectionMultiplexer.Connect(configuration);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,12 +60,23 @@ app.MapPost("api/shorten", async (
 
 app.MapGet("api/{code}", async (
     string code,
-    ApplicationDbContext dbContext
+    ApplicationDbContext dbContext,
+        IConnectionMultiplexer redis
+
     ) =>
 {
+    var db = redis.GetDatabase();
+
+    var cachedUrl = await db.StringGetAsync(code);
+    if (cachedUrl.HasValue)
+    {
+
+        return Results.Redirect(cachedUrl.ToString());
+    }
     var shortenedUrl = await dbContext.ShortenedUrls
                              .FirstOrDefaultAsync(s => s.Code == code);
     if (shortenedUrl is null) return Results.NotFound();
+    await db.StringSetAsync(code, shortenedUrl.LongUrl, TimeSpan.FromMinutes(10));
     return Results.Redirect(shortenedUrl.LongUrl);
 });
 
