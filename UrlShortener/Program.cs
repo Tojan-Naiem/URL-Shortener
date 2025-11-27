@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using UrlShortener.Data;
 using UrlShortener.Models;
 using UrlShortener.Services;
@@ -15,6 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
     ));
 builder.Services.AddScoped<UrlShorteningService>();
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    var configuration = builder.Configuration.GetConnectionString("Redis");
+    return ConnectionMultiplexer.Connect(configuration);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
