@@ -24,6 +24,7 @@ app.MapPost("api/shorten", (ShortenUrlRequest request) =>
     {
         return Results.BadRequest("The specified URL is invalid");
     }
+    return null;
 
 });
 
