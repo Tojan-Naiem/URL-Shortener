@@ -25,13 +25,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("api/shorten", (ShortenUrlRequest request) =>
+app.MapPost("api/shorten", async (
+    ShortenUrlRequest request,
+    UrlShorteningService urlShorteningService,
+    ApplicationDbContext dbContext,
+    HttpContext httpContext
+    ) =>
 {
     if (!Uri.TryCreate(request.Url,UriKind.Absolute,out _))
     {
         return Results.BadRequest("The specified URL is invalid");
     }
-    return null;
+    var code = await urlShorteningService.GenerateUniqueCode();
+    var shortenedUrl = new ShortenedUrl
+    {
+        Id = Guid.NewGuid(),
+        LongUrl = request.Url,
+        Code = code,
+        ShortUrl =$"{httpContext.Request.Scheme}://{httpContext.Request.Host}/api/{code}",
+        CreatedOnUtc=DateTime.Now
+    };
+    await dbContext.ShortenedUrls.AddAsync(shortenedUrl);
+    await dbContext.SaveChangesAsync();
+    return Results.Ok(shortenedUrl.ShortUrl);
 
 });
 
