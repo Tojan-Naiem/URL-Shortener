@@ -166,3 +166,7 @@ C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShorte
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\UrlShortener.genruntimeconfig.cache
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\ref\UrlShortener.dll
 C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\bin\Debug\net10.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\bin\Debug\net10.0\StackExchange.Redis.dll
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\bin\Debug\net10.0\System.IO.Hashing.dll
+C:\Users\Tojan AboGhola\Desktop\asp.net\Training Projects\UrlShortener\UrlShortener\obj\Debug\net10.0\UrlShortener.sourcelink.json

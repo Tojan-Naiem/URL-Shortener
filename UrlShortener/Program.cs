@@ -60,12 +60,24 @@ app.MapPost("api/shorten", async (
 
 app.MapGet("api/{code}", async (
     string code,
-    ApplicationDbContext dbContext
+    ApplicationDbContext dbContext,
+        IConnectionMultiplexer redis
+
     ) =>
 {
+    var db = redis.GetDatabase();
+
+    var cachedUrl = await db.StringGetAsync(code);
+    if (cachedUrl.HasValue)
+    {
+        Console.WriteLine("? Got from Redis!");
+
+        return Results.Redirect(cachedUrl.ToString());
+    }
     var shortenedUrl = await dbContext.ShortenedUrls
                              .FirstOrDefaultAsync(s => s.Code == code);
     if (shortenedUrl is null) return Results.NotFound();
+    await db.StringSetAsync(code, shortenedUrl.LongUrl, TimeSpan.FromMinutes(10));
     return Results.Redirect(shortenedUrl.LongUrl);
 });
 
