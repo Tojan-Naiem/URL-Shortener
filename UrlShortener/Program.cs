@@ -70,7 +70,6 @@ app.MapGet("api/{code}", async (
     var cachedUrl = await db.StringGetAsync(code);
     if (cachedUrl.HasValue)
     {
-        Console.WriteLine("? Got from Redis!");
 
         return Results.Redirect(cachedUrl.ToString());
     }
