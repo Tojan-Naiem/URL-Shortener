@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using UrlShortener.Data;
 
 namespace UrlShortener.Services
@@ -16,16 +17,23 @@ namespace UrlShortener.Services
         {
             _dbContext = dbContext;
         }
-        public string GenerateUniqueCode()
+        public async Task<string> GenerateUniqueCode()
         {
             var codeChars = new char[NumberOfCharsInShortLink];
-            for(var i = 0; i < NumberOfCharsInShortLink; i++)
+            while (true)
             {
-                int randomIndex = _random.Next(Alphabet.Length - 1);
-                codeChars[i] = Alphabet[randomIndex];
+                for (var i = 0; i < NumberOfCharsInShortLink; i++)
+                {
+                    int randomIndex = _random.Next(Alphabet.Length - 1);
+                    codeChars[i] = Alphabet[randomIndex];
+                }
+                var code = new string(codeChars);
+                if (!await _dbContext.ShortenedUrls.AnyAsync(s => s.Code == code))
+                {
+                    return code;
+                }
             }
-            var code= new string(codeChars);
-            return new string(codeChars);
+           
         }
     }
 }
