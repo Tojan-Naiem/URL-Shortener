@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "h39ZM4rkcqA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Tojan AboGhola\\Desktop\\asp.net\\Training Projects\\UrlShortener\\UrlShortener\\UrlShortener.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tojan AboGhola\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
+    "C:\\Users\\Tojan AboGhola\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
