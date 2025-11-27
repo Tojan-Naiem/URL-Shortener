@@ -1,1 +1,32 @@
-.vs
+# Build Folders
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Secrets
+appsettings.Development.json
+secrets.json
+
+# Redis
+*.rdb
+
+# NuGet
+*.nupkg
+packages/
+
+# Docker / local overrides
+docker-compose.override.yml
+Dockerfile.local
+
+# IDEs
+.vscode/
+.idea/
