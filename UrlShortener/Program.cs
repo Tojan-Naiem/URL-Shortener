@@ -48,7 +48,7 @@ app.MapPost("api/v1/data/shorten", async (
         Id = Guid.NewGuid(),
         LongUrl = request.Url,
         Code = code,
-        ShortUrl =$"{httpContext.Request.Scheme}://{httpContext.Request.Host}/api/{code}",
+        ShortUrl =$"{httpContext.Request.Scheme}://{httpContext.Request.Host}/api/v1/{code}",
         CreatedOnUtc=DateTime.Now
     };
     await dbContext.ShortenedUrls.AddAsync(shortenedUrl);
@@ -77,7 +77,7 @@ app.MapGet("api/v1/{code}", async (
                              .FirstOrDefaultAsync(s => s.Code == code);
     if (shortenedUrl is null) return Results.NotFound();
     await db.StringSetAsync(code, shortenedUrl.LongUrl, TimeSpan.FromMinutes(10));
-    return Results.Redirect(shortenedUrl.LongUrl);
+    return Results.Redirect(shortenedUrl.LongUrl, permanent: true);
 });
 
 app.UseAuthorization();
