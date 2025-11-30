@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using UrlShortener.Data;
 
@@ -17,9 +18,15 @@ namespace UrlShortener.Services
         {
             _dbContext = dbContext;
         }
-        public async Task<string> GenerateUniqueCode()
+        public async Task<string> GenerateUniqueCode(string longUrl,long id)
         {
-         
+            if (await CheckAvailabilityAsync(longUrl) is true)
+            {
+                var result= await _dbContext.ShortenedUrls.FirstOrDefaultAsync(u => u.LongUrl == longUrl);
+                return result.ShortUrl;
+
+            }
+
             var codeChars = new char[NumberOfCharsInShortLink];
             while (true)
             {
