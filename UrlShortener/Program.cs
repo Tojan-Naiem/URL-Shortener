@@ -31,7 +31,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("api/shorten", async (
+app.MapPost("api/v1/data/shorten", async (
     ShortenUrlRequest request,
     UrlShorteningService urlShorteningService,
     ApplicationDbContext dbContext,
@@ -58,7 +58,7 @@ app.MapPost("api/shorten", async (
 });
 
 
-app.MapGet("api/{code}", async (
+app.MapGet("api/v1/{code}", async (
     string code,
     ApplicationDbContext dbContext,
         IConnectionMultiplexer redis
