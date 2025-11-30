@@ -19,6 +19,7 @@ namespace UrlShortener.Services
         }
         public async Task<string> GenerateUniqueCode()
         {
+         
             var codeChars = new char[NumberOfCharsInShortLink];
             while (true)
             {
@@ -34,6 +35,10 @@ namespace UrlShortener.Services
                 }
             }
            
+        }
+        public async Task<bool> CheckAvailabilityAsync(string longUrl)
+        {
+            return await _dbContext.ShortenedUrls.AnyAsync(u => u.LongUrl == longUrl);
         }
     }
 }
