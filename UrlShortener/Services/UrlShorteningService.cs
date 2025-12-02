@@ -18,14 +18,9 @@ namespace UrlShortener.Services
         {
             _dbContext = dbContext;
         }
-        public async Task<string> GenerateUniqueCode(string longUrl,long id)
+        public async Task<string> GenerateUniqueCode()
         {
-            if (await CheckAvailabilityAsync(longUrl) is true)
-            {
-                var result= await _dbContext.ShortenedUrls.FirstOrDefaultAsync(u => u.LongUrl == longUrl);
-                return result.ShortUrl;
-
-            }
+          
 
             var codeChars = new char[NumberOfCharsInShortLink];
             while (true)

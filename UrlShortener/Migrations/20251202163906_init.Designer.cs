@@ -12,7 +12,7 @@ using UrlShortener.Data;
 namespace UrlShortener.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251130230139_init")]
+    [Migration("20251202163906_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,11 +27,9 @@ namespace UrlShortener.Migrations
 
             modelBuilder.Entity("UrlShortener.Models.ShortenedUrl", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
                         .IsRequired()

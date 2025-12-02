@@ -15,8 +15,7 @@ namespace UrlShortener.Migrations
                 name: "ShortenedUrls",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     LongUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShortUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Code = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),

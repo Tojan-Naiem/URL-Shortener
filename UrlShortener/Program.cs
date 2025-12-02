@@ -42,10 +42,16 @@ app.MapPost("api/v1/data/shorten", async (
     {
         return Results.BadRequest("The specified URL is invalid");
     }
-    var code = await urlShorteningService.GenerateUniqueCode(request.Url,2);
+    
+    if(await urlShorteningService.CheckAvailabilityAsync(request.Url) is true)
+    {
+        return Results.Ok("Already exists");
+    }
+    Guid id = Guid.NewGuid();
+    var code = await urlShorteningService.GenerateUniqueCode();
     var shortenedUrl = new ShortenedUrl
     {
-        Id = 2,
+        Id=id,
         LongUrl = request.Url,
         Code = code,
         ShortUrl =$"{httpContext.Request.Scheme}://{httpContext.Request.Host}/api/v1/{code}",
